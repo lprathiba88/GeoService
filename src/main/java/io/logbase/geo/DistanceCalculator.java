@@ -17,11 +17,8 @@ public class DistanceCalculator {
     private Double latitude;
     private Double longitude;
     private double totalDistance;
-    //private String location = "";
 
     public double getDistance(double latitude, double longitude) {
-
-        //double totalDistance;
 
         if (this.latitude == null && this.longitude == null) {
 
@@ -29,10 +26,6 @@ public class DistanceCalculator {
             totalDistance=0;
 
         } else {
-
-            /*double squareOfDistance = (Math.pow((latitude - this.latitude),2))+(Math.pow((longitude - this.longitude),2));
-            double newDistance = Math.pow(squareOfDistance,0.5);
-            distance = distance + newDistance;*/
 
             final int R = 6371; // Radius of the earth
 
