@@ -11,12 +11,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DistanceCalculator {
 
     private Double latitude;
     private Double longitude;
     private double totalDistance;
+
+    //public List<String> response;
 
     public double getDistance(double latitude, double longitude) {
 
@@ -50,6 +55,8 @@ public class DistanceCalculator {
 
     public String getLocation(double latitude, double longitude) throws IOException {
 
+        //long start = System.currentTimeMillis();
+
         URL url = new URL("http://maps.googleapis.com/maps/api/geocode/json?latlng="
                 + latitude + "," + longitude + "&sensor=true");
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -64,6 +71,18 @@ public class DistanceCalculator {
                 result += line;
             }
 
+           // System.out.println("result"+result);
+
+            System.out.println("Response Code:" + urlConnection.getResponseCode());
+            //response.add(result);
+
+            //urlConnection.getResponseMessage();
+
+            /*long now = System.currentTimeMillis();
+            double oneRequestTime = (now - start)/1000.0;
+
+            System.out.println("Time taken for one request in seconds:"+oneRequestTime);*/
+
             JSONParser parser = new JSONParser();
             JSONObject rsp = (JSONObject) parser.parse(result);
 
@@ -73,7 +92,7 @@ public class DistanceCalculator {
                 formattedAddress = (String) data.get("formatted_address");
             }
 
-            return "";
+            //return "";
         }
 
         finally {
